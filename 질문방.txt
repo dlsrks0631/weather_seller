@@ -14,3 +14,5 @@
 
 예시)날씨정보 API = 기상청 API? 아니면 OpenWeatherMap?
 (*OpernWeatherMap: https://icedhotchoco.tistory.com/entry/OpenWeatherMap-%EB%82%A0%EC%94%A8-API)
+예시2)전처리 필수 내용: 이상치, 결측치, 정규화? / 정규화는 Z-score를 말하는 것인가요?
+
