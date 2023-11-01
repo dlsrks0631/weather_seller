@@ -17,7 +17,7 @@ def main():
 
    # 데이터 불러오기
    filtered_data_list = []
-   chunk_iter = pd.read_csv(r"2023-10-10-롯데카드_소비_데이터.csv", encoding='CP949', chunksize=1000000)
+   chunk_iter = pd.read_csv(r"C:\Users\jeong\Desktop\2023-2 공부용 문서\(전선필수)산학실전캡스톤1\Capstone_2023_with_KETI_Project_File\2023_Capstone_with_KETI_Project_File\2023-10-10-롯데카드_소비_데이터.csv", encoding='CP949', chunksize=1000000)
 
    for chunk in chunk_iter:
        filtered_chunk = chunk[chunk['ana_mgpo_nm'] == '전라북도']
@@ -85,5 +85,5 @@ def main():
    print(filtered_data.head())
    return filtered_data
 
-
-main()
+if name == 'main':
+    main()
