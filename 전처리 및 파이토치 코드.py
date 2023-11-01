@@ -10,6 +10,8 @@ import torchvision
 import torchvision.transforms as transforms
 from datetime import datetime
 
+#수정되면 다음과 같이 만들 수 있습니다.
+
 print(datetime.now())
 
 chunk_size = 500000
