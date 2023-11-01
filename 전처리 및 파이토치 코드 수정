@@ -13,7 +13,7 @@ from datetime import datetime
 print(datetime.now())
 
 chunk_size = 500000
-file_path = r"C:\Users\mypc\Desktop\데이터.csv"
+file_path = r"/Users/kimjehyeon/Desktop/2023_3_2/캡스톤 - Weather Seller/롯데카드데이터.csv"
 chunks = pd.read_csv(file_path, encoding='utf-8', chunksize=chunk_size)
 imputer = SimpleImputer(strategy="median")
 scaler = StandardScaler()
