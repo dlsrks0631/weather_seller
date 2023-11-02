@@ -16,3 +16,4 @@
 (*OpernWeatherMap: https://icedhotchoco.tistory.com/entry/OpenWeatherMap-%EB%82%A0%EC%94%A8-API)
 예시2)전처리 필수 내용: 이상치, 결측치, 정규화? / 정규화는 Z-score를 말하는 것인가요?
 
+결혼유무 열에서 데이터 0,1,9가 있는데 0은 미혼이고 1은 기혼인 것 같은데 9는 뭔가요?
