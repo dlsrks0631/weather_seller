@@ -109,7 +109,7 @@ df_filtered = df[df['결제업종'].isin(cuisine_types)]
 
 # 개인 정보 입력
 gender = input("성별을 입력하세요 (1: 남성, 2: 여성): ")
-age_range = input("연령대를 입력하세요 (예: 2, 3, 4...): ")
+age_range = input("연령대를 입력하세요 (예: 20, 30, 40...): ")
 marital_status = input("결혼 유무를 입력하세요 (0: 미혼, 1: 기혼): ")
 children = input("자녀 유무를 입력하세요 (0: 없음, 1: 있음): ")
 residence_match = input("거주지 일치 여부를 입력하세요 (0: 일치하지 않음, 1: 일치): ")
@@ -123,11 +123,15 @@ user_filtered = df_filtered[
     (df_filtered['거주지일치여부'] == int(residence_match))
 ]
 
+# 사용자의 과거 결제 데이터를 기반으로 가장 선호하는 업종 찾기
+user_preferences = user_filtered.groupby('결제업종')['총결제금액'].sum().sort_values(ascending=False)
+top_cuisine_preference = user_preferences.index[0] if not user_preferences.empty else None
+
 # 결제 시각별로 그룹화하고, 각 업종별로 총 결제 금액을 집계합니다.
 popular_times = user_filtered.groupby(['결제시각', '결제업종'])['총결제금액'].sum().reset_index()
 
 # 현재 시각을 입력받아서 추천하는 함수
-def recommend_popular_category(current_hour):
+def recommend_popular_category(current_hour, top_cuisine_preference):
     try:
         current_hour = int(current_hour)
         assert 1 <= current_hour <= 10
@@ -138,13 +142,17 @@ def recommend_popular_category(current_hour):
     # 해당 시각에 가장 많은 결제가 이루어진 업종을 찾기
     current_time_data = popular_times[popular_times['결제시각'] == current_hour]
 
-    # 해당 시각에 가장 많은 결제금액을 가진 업종을 찾습니다.
-    if not current_time_data.empty:
-        most_popular = current_time_data.loc[current_time_data['총결제금액'].idxmax()]
-        print(f"현재 시각 {current_hour}시에 추천하는 업종: {most_popular['결제업종']}")
+    # 사용자의 선호도를 기반으로 가장 인기 있는 업종을 추천
+    if top_cuisine_preference and not current_time_data.empty:
+        # 선호 업종이 현재 시간대에 있는지 확인
+        if top_cuisine_preference in current_time_data['결제업종'].values:
+            print(f"현재 시각 {current_hour}시에 기반하여, 과거 선호 데이터에 따라 추천하는 업종: {top_cuisine_preference}")
+        else:
+            most_popular = current_time_data.loc[current_time_data['총결제금액'].idxmax()]
+            print(f"현재 시각 {current_hour}시에 추천하는 업종: {most_popular['결제업종']}")
     else:
-        print("해당 시각에 데이터가 없습니다.")
+        print("해당 시각에 데이터가 없거나 사용자 선호 데이터가 없습니다.")
 
 # 현재 시각을 입력받아서 추천을 실행합니다. 
 current_hour = input("현재 시각을 입력하세요 (1-10 사이의 숫자): ")
-recommend_popular_category(current_hour)
+recommend_popular_category(current_hour, top_cuisine_preference)
