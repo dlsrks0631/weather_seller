@@ -109,7 +109,7 @@ df_filtered = df[df['결제업종'].isin(cuisine_types)]
 
 # 개인 정보 입력
 gender = input("성별을 입력하세요 (1: 남성, 2: 여성): ")
-age_range = input("연령대를 입력하세요 (예: 20, 30, 40...): ")
+age_range = input("연령대를 입력하세요 (예: 2, 3, 4...): ")
 marital_status = input("결혼 유무를 입력하세요 (0: 미혼, 1: 기혼): ")
 children = input("자녀 유무를 입력하세요 (0: 없음, 1: 있음): ")
 residence_match = input("거주지 일치 여부를 입력하세요 (0: 일치하지 않음, 1: 일치): ")
