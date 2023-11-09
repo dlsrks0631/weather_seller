@@ -1,6 +1,7 @@
 # 일단 정윤님 강원도 코드에 추가했습니다.
 # 이런 식으로 입력해서 하면 어떨까 해서 올립니다.
 # 콘텐츠 기반 필터링 추가합니다.
+# 자신이 가지고 있는 예산을 바탕으로 추천해주는 알고리즘도 개발 중입니다.
 
 import pandas as pd
 import numpy as np
@@ -124,73 +125,66 @@ user_filtered = df_filtered[
 ]
 
 # 사용자의 과거 결제 데이터를 기반으로 가장 선호하는 업종 찾기
-user_preferences = user_filtered.groupby('결제업종')['총결제금액'].sum().sort_values(ascending=False)
+user_preferences = df_filtered.groupby('결제업종')['총결제금액'].sum().sort_values(ascending=False)
 top_cuisine_preference = user_preferences.index[0] if not user_preferences.empty else None
 
 # 결제 시각별로 그룹화하고, 각 업종별로 총 결제 금액을 집계합니다.
-popular_times = user_filtered.groupby(['결제시각', '결제업종'])['총결제금액'].sum().reset_index()
+popular_times = df_filtered.groupby(['결제시각', '결제업종'])['총결제금액'].sum().reset_index()
 
-# 현재 시각을 입력받아서 추천하는 함수
 def recommend_popular_category(current_hour, top_cuisine_preference):
+    global recommendation_made  # 전역 변수로 선언
+
     try:
         current_hour = int(current_hour)
-        assert 1 <= current_hour <= 10
+        assert 0 <= current_hour <= 10  # 10시간으로 설정
     except (ValueError, AssertionError):
-        print("잘못된 시간 형식입니다. 1-10 사이의 숫자를 입력해주세요.")
+        print("잘못된 시간 형식입니다. 0-10 사이의 숫자를 입력해주세요.")
         return
     
-    # 해당 시각에 가장 많은 결제가 이루어진 업종을 찾기
     current_time_data = popular_times[popular_times['결제시각'] == current_hour]
 
-    # 사용자의 선호도를 기반으로 가장 인기 있는 업종을 추천
     if top_cuisine_preference and not current_time_data.empty:
-        # 선호 업종이 현재 시간대에 있는지 확인
         if top_cuisine_preference in current_time_data['결제업종'].values:
             print(f"현재 시각 {current_hour}시에 기반하여, 과거 선호 데이터에 따라 추천하는 업종: {top_cuisine_preference}")
+            recommendation_made = True  # 추천이 이루어짐
         else:
             most_popular = current_time_data.loc[current_time_data['총결제금액'].idxmax()]
             print(f"현재 시각 {current_hour}시에 추천하는 업종: {most_popular['결제업종']}")
+            recommendation_made = True  # 추천이 이루어짐
     else:
         print("해당 시각에 데이터가 없거나 사용자 선호 데이터가 없습니다.")
 
 # 현재 시각을 입력받아서 추천을 실행합니다. 
-current_hour = input("현재 시각을 입력하세요 (1-10 사이의 숫자): ")
+current_hour = input("현재 시각을 입력하세요 (0-10 사이의 숫자): ")
+recommendation_made = False  # 추천이 이루어졌는지를 추적하는 변수 초기화
 recommend_popular_category(current_hour, top_cuisine_preference)
 
-# 모든 업종에 대한 프로필을 생성합니다.
-all_profiles = df_filtered.groupby('결제업종')['총결제금액'].sum().reset_index()
+if not recommendation_made:
+    all_profiles = df_filtered.groupby('결제업종')['총결제금액'].sum().reset_index()
 
-# 업종별로 feature scaling을 수행합니다.
-scaler = MinMaxScaler()
-all_profiles_scaled = all_profiles.copy()
-all_profiles_scaled['총결제금액'] = scaler.fit_transform(all_profiles[['총결제금액']])
+    scaler = MinMaxScaler()
+    all_profiles_scaled = all_profiles.copy()
+    all_profiles_scaled['총결제금액'] = scaler.fit_transform(all_profiles[['총결제금액']])
 
-# 유사도를 계산하는 함수를 정의합니다.
-def calculate_similarity(user_pref, all_prof_scaled):
-    # 사용자 프로필과 모든 업종 프로필의 유클리디안 거리 계산
-    all_prof_scaled['similarity'] = all_prof_scaled.apply(
-        lambda row: -np.sqrt((user_pref['총결제금액'] - row['총결제금액']) ** 2),
-        axis=1
-    )
-    return all_prof_scaled
+    def calculate_similarity(user_pref, all_prof_scaled):
+        all_prof_scaled['similarity'] = all_prof_scaled.apply(
+            lambda row: -np.sqrt((user_pref - row['총결제금액']) ** 2),
+            axis=1
+        )
+        return all_prof_scaled
 
-# 사용자 프로필을 생성합니다. (여기서는 예시로 결제업종 별 총결제금액을 사용)
-user_profile = {'총결제금액': user_preferences.get(top_cuisine_preference, 0)}
+    user_profile_value = user_preferences[top_cuisine_preference] if top_cuisine_preference else 0
+    all_profiles_similarity = calculate_similarity(user_profile_value, all_profiles_scaled)
 
-# 유사도 계산
-all_profiles_similarity = calculate_similarity(user_profile, all_profiles_scaled)
+    def recommend_similar_categories(similar_categories, top_cuisine_preference):
+        if top_cuisine_preference:
+            similar_categories = similar_categories[similar_categories['결제업종'] != top_cuisine_preference]
+        recommended_category = similar_categories.sort_values(by='similarity', ascending=False).head(1)
+        return recommended_category
 
-# 가장 유사도가 높은 업종 추천
-def recommend_similar_categories(similar_categories, top_cuisine_preference):
-    recommended_category = similar_categories.sort_values(by='similarity', ascending=False)
-    # 사용자가 이미 가장 선호하는 것을 제외
-    recommended_category = recommended_category[recommended_category['결제업종'] != top_cuisine_preference]
-    return recommended_category.head(1)
-
-# 추천 실행
-similar_categories = recommend_similar_categories(all_profiles_similarity, top_cuisine_preference)
-if not similar_categories.empty:
-    category_name = similar_categories.iloc[0]['결제업종']
-    print(f"귀하와 유사한 속성을 가진 다른 업종으로 '{category_name}'을(를) 추천합니다.")
-else:
-    print("추천할 유사한 업종이 없습니다.")
+    similar_categories = recommend_similar_categories(all_profiles_similarity, top_cuisine_preference)
+    if not similar_categories.empty:
+        category_name = similar_categories.iloc[0]['결제업종']
+        print(f"귀하와 유사한 속성을 가진 다른 업종으로 '{category_name}'을(를) 추천합니다.")
+    else:
+        print("추천할 유사한 업종이 없습니다.")
