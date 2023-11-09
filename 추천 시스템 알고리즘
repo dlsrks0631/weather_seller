@@ -1,10 +1,11 @@
 # 일단 정윤님 강원도 코드에 추가했습니다.
-# 이런 식으로 입력해서 하면 어떨까해서 올립니다.
-+ 콘텐츠 기반 필터링을 추가해서 유사한 데이터를 추론해서 출력해주는 코드 개발하고 있습니다.
+# 이런 식으로 입력해서 하면 어떨까 해서 올립니다.
+# 콘텐츠 기반 필터링 추가합니다.
 
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import RobustScaler
+from sklearn.preprocessing import MinMaxScaler
 
 # 데이터 불러오기 
 
@@ -155,3 +156,41 @@ def recommend_popular_category(current_hour, top_cuisine_preference):
 # 현재 시각을 입력받아서 추천을 실행합니다. 
 current_hour = input("현재 시각을 입력하세요 (1-10 사이의 숫자): ")
 recommend_popular_category(current_hour, top_cuisine_preference)
+
+# 모든 업종에 대한 프로필을 생성합니다.
+all_profiles = df_filtered.groupby('결제업종')['총결제금액'].sum().reset_index()
+
+# 업종별로 feature scaling을 수행합니다.
+scaler = MinMaxScaler()
+all_profiles_scaled = all_profiles.copy()
+all_profiles_scaled['총결제금액'] = scaler.fit_transform(all_profiles[['총결제금액']])
+
+# 유사도를 계산하는 함수를 정의합니다.
+def calculate_similarity(user_pref, all_prof_scaled):
+    # 사용자 프로필과 모든 업종 프로필의 유클리디안 거리 계산
+    all_prof_scaled['similarity'] = all_prof_scaled.apply(
+        lambda row: -np.sqrt((user_pref['총결제금액'] - row['총결제금액']) ** 2),
+        axis=1
+    )
+    return all_prof_scaled
+
+# 사용자 프로필을 생성합니다. (여기서는 예시로 결제업종 별 총결제금액을 사용)
+user_profile = {'총결제금액': user_preferences.get(top_cuisine_preference, 0)}
+
+# 유사도 계산
+all_profiles_similarity = calculate_similarity(user_profile, all_profiles_scaled)
+
+# 가장 유사도가 높은 업종 추천
+def recommend_similar_categories(similar_categories, top_cuisine_preference):
+    recommended_category = similar_categories.sort_values(by='similarity', ascending=False)
+    # 사용자가 이미 가장 선호하는 것을 제외
+    recommended_category = recommended_category[recommended_category['결제업종'] != top_cuisine_preference]
+    return recommended_category.head(1)
+
+# 추천 실행
+similar_categories = recommend_similar_categories(all_profiles_similarity, top_cuisine_preference)
+if not similar_categories.empty:
+    category_name = similar_categories.iloc[0]['결제업종']
+    print(f"귀하와 유사한 속성을 가진 다른 업종으로 '{category_name}'을(를) 추천합니다.")
+else:
+    print("추천할 유사한 업종이 없습니다.")
