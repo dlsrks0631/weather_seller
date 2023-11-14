@@ -1,0 +1,343 @@
+# 코랩으로 실행
+# 전북 결제 날씨 통합데이터 파일 필요
+
+from google.colab import files
+import pandas as pd
+
+# 로컬 파일 업로드
+uploaded = files.upload()
+
+# 데이터 로드
+df = pd.read_csv('전북 결제 날씨 통합데이터.csv', encoding='utf-8')
+
+//
+
+import pandas as pd
+import numpy as np
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import requests
+from sklearn.model_selection import train_test_split
+from torch.utils.data import TensorDataset, DataLoader
+from sklearn.preprocessing import MinMaxScaler, LabelEncoder
+from sklearn.impute import SimpleImputer
+from sklearn.metrics.pairwise import cosine_similarity
+from collections import Counter
+from sklearn.utils import resample
+from sklearn.model_selection import KFold
+
+# 각 열의 결측치 개수를 확인합니다.
+missing_values = df.isnull().sum()
+
+# 결측치가 하나라도 있는 경우에만 처리를 수행합니다.
+if missing_values.any():
+
+    # 최빈값으로 결측치를 대체하기 위한 imputer 생성
+    imputer = SimpleImputer(strategy='most_frequent')
+
+    # 전체 데이터셋에 imputer 적용
+    df_filled = pd.DataFrame(imputer.fit_transform(df), columns=df.columns)
+
+    # 대체된 데이터 프레임의 결측치를 다시 확인합니다.
+    if df_filled.isnull().sum().any():
+        print("결측치가 여전히 존재합니다.")
+    else:
+        print("모든 결측치가 처리되었습니다.")
+        # 결측치가 처리된 데이터 프레임을 반환하거나 저장합니다.
+        df = df_filled
+else:
+    print("결측치가 없습니다.")
+
+# 이상치 처리 (IQR 사용)
+
+# 결과를 저장할 DataFrame을 준비합니다.
+filtered_df = pd.DataFrame()
+
+# 결제업종의 유니크한 값을 가져옵니다.
+unique_categories = df['결제업종'].unique()
+
+for category in unique_categories:
+    # 각 결제업종에 해당하는 데이터만 추출합니다.
+    category_data = df[df['결제업종'] == category]
+
+     # 해당 데이터의 총결제금액의 Q1, Q3 및 IQR을 계산합니다.
+    Q1 = category_data['총결제금액'].quantile(0.25)
+    Q3 = category_data['총결제금액'].quantile(0.75)
+    IQR = Q3 - Q1
+
+    # IQR 규칙에 따라 이상치를 필터링합니다.
+    filtered_category_data = category_data[~((category_data['총결제금액'] < (Q1 - 1.5 * IQR)) |
+                                            (category_data['총결제금액'] > (Q3 + 1.5 * IQR)))]
+
+    # 필터링된 데이터를 결과 DataFrame에 추가합니다.
+    filtered_df = pd.concat([filtered_df, filtered_category_data], axis=0)
+
+from google.colab import drive
+drive.mount('/content/drive')
+
+# name 변수 설정
+name = '전라북도'  # 예시, 실제 사용하는 이름으로 대체
+
+# Google Drive 내에 저장할 경로 설정 (이 경로는 존재해야 함)
+save_path = '/content/drive/My Drive/Colab Notebooks/'  # 이 경로는 적절히 수정 가능
+
+# 파일 저장
+filtered_df.to_csv(f"{save_path}{name}_filtered.csv", index=False)
+
+# 이상치처리된 파일읽기
+data = pd.read_csv(f"{save_path}{name}_filtered.csv", encoding = 'UTF-8')
+
+# 정규화 (RobustScaler 사용)
+
+# 선택한 특성들에 대해서만 스케일링합니다.
+features_to_scale = ['성별', '연령대','결혼유무','자녀유무','거주유무','총결제금액','결제개수']
+
+# RobustScaler 인스턴스를 생성합니다.
+# 데이터 정규화 (MinMaxScaler 사용)
+scaler = MinMaxScaler()
+data[features_to_scale] = scaler.fit_transform(data[features_to_scale])
+
+# 스케일링된 데이터를 새 CSV 파일로 저장합니다.
+data.to_csv(f"{name}_scaled_data.csv", index=False)
+
+# CSV 파일을 읽어서 데이터프레임으로 저장합니다.
+df = pd.read_csv('전북 결제 날씨 통합데이터.csv')
+
+# '식사시간' 열의 값을 숫자로 매핑하여 '식사시간_숫자' 열을 생성합니다.
+df['식사시간_숫자'] = df['식사시간'].map({"새벽": 1, "아침": 2, "점심": 3, "저녁": 4, "야간": 5})
+
+# 모델 학습에 사용할 특성(features)과 레이블(labels)을 추출합니다.
+features = df[['식사시간_숫자', '성별', '연령대', '결혼유무', '자녀유무', '거주유무']].values
+labels = df['결제업종'].values
+
+# LabelEncoder를 사용하여 레이블을 숫자로 인코딩합니다.
+label_encoder = LabelEncoder()
+labels_encoded = label_encoder.fit_transform(labels)
+
+# 특성 데이터를 float32 형태로 변환합니다.
+features = features.astype(np.float32)
+
+# 특성(features)와 레이블(labels_encoded)을 PyTorch 텐서로 변환합니다.
+X = torch.tensor(features)
+y = torch.tensor(labels_encoded, dtype=torch.long)
+
+# PyTorch의 TensorDataset을 사용하여 데이터셋을 생성합니다.
+dataset = TensorDataset(X, y)
+
+# DataLoader를 사용하여 데이터를 미니배치로 나누고 셔플합니다.
+data_loader = DataLoader(dataset, batch_size=64, shuffle=True)
+
+# 신경망 모델 정의
+class ImprovedCuisineRecommendationModel(nn.Module):
+    def __init__(self, input_size, hidden_size, num_classes):
+        super(ImprovedCuisineRecommendationModel, self).__init__()
+        self.fc1 = nn.Linear(input_size, hidden_size)
+        self.bn1 = nn.BatchNorm1d(hidden_size)
+        self.relu1 = nn.LeakyReLU()
+        self.dropout1 = nn.Dropout(0.6)
+        self.fc2 = nn.Linear(hidden_size, hidden_size)
+        self.bn2 = nn.BatchNorm1d(hidden_size)
+        self.relu2 = nn.LeakyReLU()
+        self.dropout2 = nn.Dropout(0.6)
+        self.fc3 = nn.Linear(hidden_size, num_classes)
+
+    def forward(self, x):
+        out = self.fc1(x)
+        out = self.bn1(out)
+        out = self.relu1(out)
+        out = self.dropout1(out)
+        out = self.fc2(out)
+        out = self.bn2(out)
+        out = self.relu2(out)
+        out = self.dropout2(out)
+        out = self.fc3(out)
+        return out
+
+# 교차 검증을 위한 KFold 설정
+kf = KFold(n_splits=5, shuffle=True, random_state=42)
+
+# 학습률과 배치 크기 조정
+learning_rate = 0.0005
+batch_size = 32
+
+# 손실 함수 설정
+criterion = nn.CrossEntropyLoss()
+
+for fold, (train_idx, val_idx) in enumerate(kf.split(X, y)):
+    print(f"Training on fold {fold+1}")
+
+    # 데이터셋 분할
+    X_train_fold, X_val_fold = X[train_idx], X[val_idx]
+    y_train_fold, y_val_fold = y[train_idx], y[val_idx]
+
+    # DataLoader 설정
+    train_dataset_fold = TensorDataset(X_train_fold, y_train_fold)
+    val_dataset_fold = TensorDataset(X_val_fold, y_val_fold)
+    train_loader_fold = DataLoader(train_dataset_fold, batch_size=batch_size, shuffle=True)
+    val_loader_fold = DataLoader(val_dataset_fold, batch_size=batch_size, shuffle=False)
+
+    # 모델 초기화 및 옵티마이저 설정
+    model = ImprovedCuisineRecommendationModel(input_size=6, hidden_size=100, num_classes=len(label_encoder.classes_))
+    optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+
+    # 학습 루프
+    epochs = 50
+    best_val_loss = float('inf')
+    for epoch in range(epochs):
+        model.train()
+        total_loss = 0
+        for inputs, targets in train_loader_fold:
+            optimizer.zero_grad()
+            outputs = model(inputs)
+            loss = criterion(outputs, targets)
+            loss.backward()
+            optimizer.step()
+            total_loss += loss.item()
+
+        avg_loss = total_loss / len(train_loader_fold)
+        print(f"Fold {fold+1}, Epoch {epoch+1}/{epochs}, Training Loss: {avg_loss:.4f}")
+
+        model.eval()
+        val_loss = 0
+        correct = 0
+        total = 0
+        with torch.no_grad():
+            for inputs, targets in val_loader_fold:
+                outputs = model(inputs)
+                loss = criterion(outputs, targets)
+                val_loss += loss.item()
+                _, predicted = torch.max(outputs.data, 1)
+                total += targets.size(0)
+                correct += (predicted == targets).sum().item()
+
+        avg_val_loss = val_loss / len(val_loader_fold)
+        accuracy = 100 * correct / total
+        print(f"Fold {fold+1}, Epoch {epoch+1}/{epochs}, Validation Loss: {avg_val_loss:.4f}, Accuracy: {accuracy:.2f}%\n")
+
+        # 조기 종료
+        if avg_val_loss < best_val_loss:
+            best_val_loss = avg_val_loss
+        else:
+            print("Fold {fold+1}, 검증 손실이 더 이상 감소하지 않아 학습을 중단합니다.")
+            break
+
+# 날씨 정보 가져오기
+api_key = "5a6322c7fcd0b535f586c473271073e6"  # 여기서 'your_api_key'는 OpenWeather에서 받은 API 키로 바꿔야 합니다.
+city = 'Jeonju'
+country_code = 'KR'
+url = f'http://api.openweathermap.org/data/2.5/weather?q={city},{country_code}&appid={api_key}'
+response = requests.get(url)
+
+if response.status_code == 200:
+    data = response.json()
+    temperature_kelvin = data['main']['temp']
+    temperature_celsius = temperature_kelvin - 273.15
+    rain = data.get('rain', {}).get('1h', 0)
+    snow = data.get('snow', {}).get('1h', 0)
+    cloudiness = data['clouds']['all']
+
+    weather_data = pd.DataFrame({
+        '기온': [temperature_celsius],
+        '강수량': [rain],
+        '적설량': [snow],
+        '전운량': [cloudiness],
+        '날씨_구름': [1 if cloudiness > 50 else 0],
+        '날씨_비': [1 if rain > 0 else 0],
+        '날씨_눈': [1 if snow > 0 else 0]
+    })
+
+    # 유사도 기반 추천
+    existing_data = pd.read_csv('전북 결제 날씨 통합데이터.csv', encoding='utf-8')
+    selected_cols = ['기온', '강수량', '적설량', '전운량', '날씨_구름', '날씨_비', '날씨_눈', '결제업종']
+    existing_data = existing_data[selected_cols]
+    existing_data = existing_data.fillna(0)
+
+    scaler = MinMaxScaler()
+    existing_data[['기온', '강수량', '적설량', '전운량']] = scaler.fit_transform(existing_data[['기온', '강수량', '적설량', '전운량']])
+    existing_data['결제업종'] = label_encoder.transform(existing_data['결제업종'])
+
+    X_weather = existing_data.drop(columns=['결제업종']).values
+    labels_weather = existing_data['결제업종'].values
+
+    # 날씨 문자열을 숫자로 매핑
+    weather_mapping = {
+        '구름많음': 1,
+        '구름조금': 2,
+        '맑음': 3,
+        '흐림': 4,
+        '비': 5,
+        '눈': 6
+    }
+
+    # 날씨 데이터를 숫자로 변환 (모든 날씨 관련 컬럼에 대해 적용)
+    existing_data['날씨_구름'] = existing_data['날씨_구름'].map(weather_mapping).fillna(0)
+    existing_data['날씨_비'] = existing_data['날씨_비'].map(weather_mapping).fillna(0)
+    existing_data['날씨_눈'] = existing_data['날씨_눈'].map(weather_mapping).fillna(0)
+
+    # X_weather 데이터를 업데이트합니다.
+    X_weather = existing_data.drop(columns=['결제업종']).values
+
+    # 나머지 데이터 처리 로직은 동일하게 유지
+    cosine_sim = cosine_similarity(X_weather, weather_data)
+
+    K = 5
+    top_k_similar_indices = cosine_sim.argsort(axis=0)[-K:][::-1].flatten()
+    top_k_similar_labels = labels_weather[top_k_similar_indices]
+    top_k_similar_labels_count = Counter(top_k_similar_labels)
+
+    # 날씨 기반 추천 업종
+    recommended_cuisine_weather = label_encoder.inverse_transform([top_k_similar_labels_count.most_common(1)[0][0]])[0]
+
+else:
+    print('API 호출 실패')
+
+# 인사말
+print("안녕하세요 사용자 정보를 입력해주세요")
+
+# 사용자 입력 처리
+user_meal = input("식사 시간을 입력하세요 (예 : 새벽, 아침, 점심, 저녁, 야간...): ")
+gender = int(input("성별을 입력하세요 (1: 남성, 2: 여성): "))
+age_range = int(input("연령대를 입력하세요 (예: 2, 3, 4...): "))
+marital_status = int(input("결혼 유무를 입력하세요 (0: 미혼, 1: 기혼): "))
+children = int(input("자녀 유무를 입력하세요 (0: 없음, 1: 있음): "))
+residence_match = int(input("거주 유무를 입력하세요 (0: 일치하지 않음, 1: 일치): "))
+
+# 사용자 정보 확인
+print(f"사용자가 입력하신 정보 : 식사시간은 {user_meal}, {'남성' if gender == 1 else '여성'}, {age_range}0대, {'기혼' if marital_status == 1 else '미혼'}, 자녀는 {'있음' if children == 1 else '없음'}, 거주지는 {'일치함' if residence_match == 1 else '일치하지 않음'} 입니다.")
+
+# 식사시간 숫자로 변환
+meal_times = {"새벽": 1, "아침": 2, "점심": 3, "저녁": 4, "야간": 5}
+user_meal_number = meal_times.get(user_meal, None)
+
+# Pytorch tensor로 변환
+user_info = torch.tensor([user_meal_number, gender, age_range, marital_status, children, residence_match], dtype=torch.float32)
+
+# 모델 기반 추천 업종
+with torch.no_grad():
+    user_info = user_info.unsqueeze(0)
+    predictions = model(user_info)
+    predicted_index = torch.argmax(predictions, dim=1).item()
+    predicted_cuisine_model = label_encoder.inverse_transform([predicted_index])[0]
+
+# 모델 기반 추천 업종 출력
+print(f"모델 기반 추천 업종: '{predicted_cuisine_model}'")
+
+# 날씨 기반 추천 업종 출력
+print(f"날씨 기반 추천 업종: '{recommended_cuisine_weather}'")
+
+# 최종 추천 업종 결정
+# 여기서는 날씨 기반 추천과 모델 기반 추천이 일치하는 경우 해당 업종을 추천합니다.
+# 일치하지 않는 경우, 두 추천 중 하나를 선택하거나 추가 로직을 적용할 수 있습니다.
+if predicted_cuisine_model == recommended_cuisine_weather:
+    final_recommended_cuisine = predicted_cuisine_model
+    print(f"두 추천이 일치합니다. 최종 추천 업종: '{final_recommended_cuisine}'")
+else:
+    # 예: 두 추천이 일치하지 않는 경우 날씨 기반 추천을 우선시할 수 있습니다.
+    # 이 부분은 필요에 따라 조정할 수 있습니다.
+    final_recommended_cuisine = recommended_cuisine_weather
+    print(f"두 추천이 일치하지 않습니다. 최종 추천 업종: '{final_recommended_cuisine}' (날씨 기반 추천 우선)")
+
+# 현재 날씨 출력
+print(f"현재 날씨는 기온: {temperature_celsius:.2f}°C, 강수량: {rain}mm, 적설량: {snow}mm, 구름량: {cloudiness}% 입니다.")
+print(f"따라서 날씨와 입력하신 정보에 맞는 추천 업종은 '{final_recommended_cuisine}' 입니다.")
