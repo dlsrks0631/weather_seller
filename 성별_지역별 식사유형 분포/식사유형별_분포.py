@@ -22,7 +22,7 @@ data = pd.read_csv(r"C:\Users\user\Desktop\캡스톤\롯데카드내역_지역(�
 male_data = data[data['성별'] == 1]
 
 # 결제업종이 양식, 중식, 한식인 데이터 필터링
-filtered_data = male_data[male_data['결제업종'].isin(['양식', '중식', '한식'])]
+filtered_data = male_data[male_data['결제업종'].isin(['양식', '중식', '한식', '일식'])]
 
 # 연령대별로 그룹화하고, 결제업종별 결제개수 합산
 grouped_data = filtered_data.groupby(['연령대', '결제업종'])['결제개수'].sum().unstack().fillna(0)
@@ -33,7 +33,7 @@ grouped_data = filtered_data.groupby(['연령대', '결제업종'])['결제개�
 sns.set(style="whitegrid")
 plt.figure(figsize=(12, 8))
 grouped_data.plot(kind='bar', stacked=False)
-plt.title('제주특별자치도 연령대별 남성의 양식, 중식, 한식 결제건수', fontproperties=fm.FontProperties(fname=font_path))
+plt.title('제주특별자치도 연령대별 남성의 양식, 중식, 한식, 일식식 결제건수', fontproperties=fm.FontProperties(fname=font_path))
 plt.xlabel('연령대', fontproperties=fm.FontProperties(fname=font_path))
 plt.ylabel('결제건수', fontproperties=fm.FontProperties(fname=font_path))
 plt.legend(title='결제업종', prop=fm.FontProperties(fname=font_path))
@@ -61,7 +61,7 @@ data = pd.read_csv(r"C:\Users\user\Desktop\캡스톤\롯데카드내역_지역(�
 male_data = data[data['성별'] == 2]
 
 # 결제업종이 양식, 중식, 한식인 데이터 필터링
-filtered_data = male_data[male_data['결제업종'].isin(['양식', '중식', '한식'])]
+filtered_data = male_data[male_data['결제업종'].isin(['양식', '중식', '한식', '일식'])]
 
 # 연령대별로 그룹화하고, 결제업종별 결제개수 합산
 grouped_data = filtered_data.groupby(['연령대', '결제업종'])['결제개수'].sum().unstack().fillna(0)
@@ -72,7 +72,7 @@ grouped_data = filtered_data.groupby(['연령대', '결제업종'])['결제개�
 sns.set(style="whitegrid")
 plt.figure(figsize=(12, 8))
 grouped_data.plot(kind='bar', stacked=False)
-plt.title('제주특별자치도 연령대별 여성의 양식, 중식, 한식 결제건수', fontproperties=fm.FontProperties(fname=font_path))
+plt.title('제주특별자치도 연령대별 여성의 양식, 중식, 한식, 일식 결제건수', fontproperties=fm.FontProperties(fname=font_path))
 plt.xlabel('연령대', fontproperties=fm.FontProperties(fname=font_path))
 plt.ylabel('결제건수', fontproperties=fm.FontProperties(fname=font_path))
 plt.legend(title='결제업종', prop=fm.FontProperties(fname=font_path))
