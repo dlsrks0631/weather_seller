@@ -1,0 +1,373 @@
+모든 결측치가 처리되었습니다.
+Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount("/content/drive", force_remount=True).
+Training on fold 1
+Fold 1, Epoch 1/50, Training Loss: 1.4123
+Fold 1, Epoch 1/50, Validation Loss: 1.3455, Accuracy: 46.59%
+
+Fold 1, Epoch 2/50, Training Loss: 1.3139
+Fold 1, Epoch 2/50, Validation Loss: 1.3061, Accuracy: 44.32%
+
+Fold 1, Epoch 3/50, Training Loss: 1.2342
+Fold 1, Epoch 3/50, Validation Loss: 1.2813, Accuracy: 50.00%
+
+Fold 1, Epoch 4/50, Training Loss: 1.1663
+Fold 1, Epoch 4/50, Validation Loss: 1.2551, Accuracy: 45.45%
+
+Fold 1, Epoch 5/50, Training Loss: 1.1557
+Fold 1, Epoch 5/50, Validation Loss: 1.2373, Accuracy: 46.59%
+
+Fold 1, Epoch 6/50, Training Loss: 1.1501
+Fold 1, Epoch 6/50, Validation Loss: 1.2223, Accuracy: 47.73%
+
+Fold 1, Epoch 7/50, Training Loss: 1.1555
+Fold 1, Epoch 7/50, Validation Loss: 1.2152, Accuracy: 47.73%
+
+Fold 1, Epoch 8/50, Training Loss: 1.1229
+Fold 1, Epoch 8/50, Validation Loss: 1.1989, Accuracy: 46.59%
+
+Fold 1, Epoch 9/50, Training Loss: 1.1362
+Fold 1, Epoch 9/50, Validation Loss: 1.1865, Accuracy: 48.86%
+
+Fold 1, Epoch 10/50, Training Loss: 1.1201
+Fold 1, Epoch 10/50, Validation Loss: 1.1755, Accuracy: 48.86%
+
+Fold 1, Epoch 11/50, Training Loss: 1.1219
+Fold 1, Epoch 11/50, Validation Loss: 1.1704, Accuracy: 46.59%
+
+Fold 1, Epoch 12/50, Training Loss: 1.0965
+Fold 1, Epoch 12/50, Validation Loss: 1.1676, Accuracy: 46.59%
+
+Fold 1, Epoch 13/50, Training Loss: 1.1517
+Fold 1, Epoch 13/50, Validation Loss: 1.1563, Accuracy: 48.86%
+
+Fold 1, Epoch 14/50, Training Loss: 1.0851
+Fold 1, Epoch 14/50, Validation Loss: 1.1439, Accuracy: 48.86%
+
+Fold 1, Epoch 15/50, Training Loss: 1.0629
+Fold 1, Epoch 15/50, Validation Loss: 1.1418, Accuracy: 47.73%
+
+Fold 1, Epoch 16/50, Training Loss: 1.0532
+Fold 1, Epoch 16/50, Validation Loss: 1.1380, Accuracy: 46.59%
+
+Fold 1, Epoch 17/50, Training Loss: 1.0754
+Fold 1, Epoch 17/50, Validation Loss: 1.1322, Accuracy: 46.59%
+
+Fold 1, Epoch 18/50, Training Loss: 1.0977
+Fold 1, Epoch 18/50, Validation Loss: 1.1263, Accuracy: 51.14%
+
+Fold 1, Epoch 19/50, Training Loss: 1.0560
+Fold 1, Epoch 19/50, Validation Loss: 1.1198, Accuracy: 51.14%
+
+Fold 1, Epoch 20/50, Training Loss: 1.0609
+Fold 1, Epoch 20/50, Validation Loss: 1.1122, Accuracy: 50.00%
+
+Fold 1, Epoch 21/50, Training Loss: 1.0582
+Fold 1, Epoch 21/50, Validation Loss: 1.1085, Accuracy: 48.86%
+
+Fold 1, Epoch 22/50, Training Loss: 1.0805
+Fold 1, Epoch 22/50, Validation Loss: 1.1105, Accuracy: 52.27%
+
+Fold {fold+1}, 검증 손실이 더 이상 감소하지 않아 학습을 중단합니다.
+Training on fold 2
+Fold 2, Epoch 1/50, Training Loss: 1.5573
+Fold 2, Epoch 1/50, Validation Loss: 1.3989, Accuracy: 32.18%
+
+Fold 2, Epoch 2/50, Training Loss: 1.3889
+Fold 2, Epoch 2/50, Validation Loss: 1.3169, Accuracy: 45.98%
+
+Fold 2, Epoch 3/50, Training Loss: 1.3503
+Fold 2, Epoch 3/50, Validation Loss: 1.2537, Accuracy: 43.68%
+
+Fold 2, Epoch 4/50, Training Loss: 1.2838
+Fold 2, Epoch 4/50, Validation Loss: 1.2095, Accuracy: 43.68%
+
+Fold 2, Epoch 5/50, Training Loss: 1.2852
+Fold 2, Epoch 5/50, Validation Loss: 1.1821, Accuracy: 45.98%
+
+Fold 2, Epoch 6/50, Training Loss: 1.1777
+Fold 2, Epoch 6/50, Validation Loss: 1.1603, Accuracy: 39.08%
+
+Fold 2, Epoch 7/50, Training Loss: 1.2445
+Fold 2, Epoch 7/50, Validation Loss: 1.1510, Accuracy: 47.13%
+
+Fold 2, Epoch 8/50, Training Loss: 1.1991
+Fold 2, Epoch 8/50, Validation Loss: 1.1341, Accuracy: 48.28%
+
+Fold 2, Epoch 9/50, Training Loss: 1.1410
+Fold 2, Epoch 9/50, Validation Loss: 1.1206, Accuracy: 49.43%
+
+Fold 2, Epoch 10/50, Training Loss: 1.1227
+Fold 2, Epoch 10/50, Validation Loss: 1.1053, Accuracy: 52.87%
+
+Fold 2, Epoch 11/50, Training Loss: 1.1757
+Fold 2, Epoch 11/50, Validation Loss: 1.0932, Accuracy: 51.72%
+
+Fold 2, Epoch 12/50, Training Loss: 1.1124
+Fold 2, Epoch 12/50, Validation Loss: 1.0861, Accuracy: 52.87%
+
+Fold 2, Epoch 13/50, Training Loss: 1.0937
+Fold 2, Epoch 13/50, Validation Loss: 1.0722, Accuracy: 49.43%
+
+Fold 2, Epoch 14/50, Training Loss: 1.1722
+Fold 2, Epoch 14/50, Validation Loss: 1.0718, Accuracy: 48.28%
+
+Fold 2, Epoch 15/50, Training Loss: 1.1597
+Fold 2, Epoch 15/50, Validation Loss: 1.0631, Accuracy: 48.28%
+
+Fold 2, Epoch 16/50, Training Loss: 1.0955
+Fold 2, Epoch 16/50, Validation Loss: 1.0556, Accuracy: 49.43%
+
+Fold 2, Epoch 17/50, Training Loss: 1.0790
+Fold 2, Epoch 17/50, Validation Loss: 1.0536, Accuracy: 57.47%
+
+Fold 2, Epoch 18/50, Training Loss: 1.0918
+Fold 2, Epoch 18/50, Validation Loss: 1.0478, Accuracy: 57.47%
+
+Fold 2, Epoch 19/50, Training Loss: 1.0877
+Fold 2, Epoch 19/50, Validation Loss: 1.0419, Accuracy: 51.72%
+
+Fold 2, Epoch 20/50, Training Loss: 1.0944
+Fold 2, Epoch 20/50, Validation Loss: 1.0331, Accuracy: 50.57%
+
+Fold 2, Epoch 21/50, Training Loss: 1.1214
+Fold 2, Epoch 21/50, Validation Loss: 1.0328, Accuracy: 50.57%
+
+Fold 2, Epoch 22/50, Training Loss: 1.0710
+Fold 2, Epoch 22/50, Validation Loss: 1.0298, Accuracy: 48.28%
+
+Fold 2, Epoch 23/50, Training Loss: 1.0817
+Fold 2, Epoch 23/50, Validation Loss: 1.0224, Accuracy: 48.28%
+
+Fold 2, Epoch 24/50, Training Loss: 1.0404
+Fold 2, Epoch 24/50, Validation Loss: 1.0151, Accuracy: 49.43%
+
+Fold 2, Epoch 25/50, Training Loss: 1.0418
+Fold 2, Epoch 25/50, Validation Loss: 1.0148, Accuracy: 48.28%
+
+Fold 2, Epoch 26/50, Training Loss: 1.0696
+Fold 2, Epoch 26/50, Validation Loss: 1.0092, Accuracy: 49.43%
+
+Fold 2, Epoch 27/50, Training Loss: 1.0846
+Fold 2, Epoch 27/50, Validation Loss: 1.0069, Accuracy: 49.43%
+
+Fold 2, Epoch 28/50, Training Loss: 1.0437
+Fold 2, Epoch 28/50, Validation Loss: 1.0066, Accuracy: 48.28%
+
+Fold 2, Epoch 29/50, Training Loss: 1.0820
+Fold 2, Epoch 29/50, Validation Loss: 1.0054, Accuracy: 47.13%
+
+Fold 2, Epoch 30/50, Training Loss: 1.0499
+Fold 2, Epoch 30/50, Validation Loss: 1.0025, Accuracy: 49.43%
+
+Fold 2, Epoch 31/50, Training Loss: 1.0572
+Fold 2, Epoch 31/50, Validation Loss: 0.9965, Accuracy: 49.43%
+
+Fold 2, Epoch 32/50, Training Loss: 1.0656
+Fold 2, Epoch 32/50, Validation Loss: 0.9971, Accuracy: 49.43%
+
+Fold {fold+1}, 검증 손실이 더 이상 감소하지 않아 학습을 중단합니다.
+Training on fold 3
+Fold 3, Epoch 1/50, Training Loss: 1.4993
+Fold 3, Epoch 1/50, Validation Loss: 1.3799, Accuracy: 13.79%
+
+Fold 3, Epoch 2/50, Training Loss: 1.4157
+Fold 3, Epoch 2/50, Validation Loss: 1.3228, Accuracy: 36.78%
+
+Fold 3, Epoch 3/50, Training Loss: 1.3349
+Fold 3, Epoch 3/50, Validation Loss: 1.2494, Accuracy: 49.43%
+
+Fold 3, Epoch 4/50, Training Loss: 1.2950
+Fold 3, Epoch 4/50, Validation Loss: 1.1860, Accuracy: 50.57%
+
+Fold 3, Epoch 5/50, Training Loss: 1.2140
+Fold 3, Epoch 5/50, Validation Loss: 1.1633, Accuracy: 54.02%
+
+Fold 3, Epoch 6/50, Training Loss: 1.1850
+Fold 3, Epoch 6/50, Validation Loss: 1.1414, Accuracy: 54.02%
+
+Fold 3, Epoch 7/50, Training Loss: 1.1773
+Fold 3, Epoch 7/50, Validation Loss: 1.1206, Accuracy: 59.77%
+
+Fold 3, Epoch 8/50, Training Loss: 1.1673
+Fold 3, Epoch 8/50, Validation Loss: 1.1007, Accuracy: 58.62%
+
+Fold 3, Epoch 9/50, Training Loss: 1.1499
+Fold 3, Epoch 9/50, Validation Loss: 1.0905, Accuracy: 49.43%
+
+Fold 3, Epoch 10/50, Training Loss: 1.1508
+Fold 3, Epoch 10/50, Validation Loss: 1.0774, Accuracy: 50.57%
+
+Fold 3, Epoch 11/50, Training Loss: 1.0925
+Fold 3, Epoch 11/50, Validation Loss: 1.0670, Accuracy: 49.43%
+
+Fold 3, Epoch 12/50, Training Loss: 1.1135
+Fold 3, Epoch 12/50, Validation Loss: 1.0608, Accuracy: 57.47%
+
+Fold 3, Epoch 13/50, Training Loss: 1.1023
+Fold 3, Epoch 13/50, Validation Loss: 1.0536, Accuracy: 55.17%
+
+Fold 3, Epoch 14/50, Training Loss: 1.1656
+Fold 3, Epoch 14/50, Validation Loss: 1.0517, Accuracy: 56.32%
+
+Fold 3, Epoch 15/50, Training Loss: 1.0936
+Fold 3, Epoch 15/50, Validation Loss: 1.0416, Accuracy: 55.17%
+
+Fold 3, Epoch 16/50, Training Loss: 1.0895
+Fold 3, Epoch 16/50, Validation Loss: 1.0403, Accuracy: 56.32%
+
+Fold 3, Epoch 17/50, Training Loss: 1.0870
+Fold 3, Epoch 17/50, Validation Loss: 1.0385, Accuracy: 58.62%
+
+Fold 3, Epoch 18/50, Training Loss: 1.0841
+Fold 3, Epoch 18/50, Validation Loss: 1.0320, Accuracy: 58.62%
+
+Fold 3, Epoch 19/50, Training Loss: 1.1010
+Fold 3, Epoch 19/50, Validation Loss: 1.0372, Accuracy: 58.62%
+
+Fold {fold+1}, 검증 손실이 더 이상 감소하지 않아 학습을 중단합니다.
+Training on fold 4
+Fold 4, Epoch 1/50, Training Loss: 1.4443
+Fold 4, Epoch 1/50, Validation Loss: 1.3010, Accuracy: 47.13%
+
+Fold 4, Epoch 2/50, Training Loss: 1.3855
+Fold 4, Epoch 2/50, Validation Loss: 1.2471, Accuracy: 50.57%
+
+Fold 4, Epoch 3/50, Training Loss: 1.2936
+Fold 4, Epoch 3/50, Validation Loss: 1.2017, Accuracy: 51.72%
+
+Fold 4, Epoch 4/50, Training Loss: 1.2606
+Fold 4, Epoch 4/50, Validation Loss: 1.1766, Accuracy: 50.57%
+
+Fold 4, Epoch 5/50, Training Loss: 1.2251
+Fold 4, Epoch 5/50, Validation Loss: 1.1442, Accuracy: 50.57%
+
+Fold 4, Epoch 6/50, Training Loss: 1.1909
+Fold 4, Epoch 6/50, Validation Loss: 1.1225, Accuracy: 49.43%
+
+Fold 4, Epoch 7/50, Training Loss: 1.1615
+Fold 4, Epoch 7/50, Validation Loss: 1.1079, Accuracy: 51.72%
+
+Fold 4, Epoch 8/50, Training Loss: 1.1426
+Fold 4, Epoch 8/50, Validation Loss: 1.0895, Accuracy: 50.57%
+
+Fold 4, Epoch 9/50, Training Loss: 1.1533
+Fold 4, Epoch 9/50, Validation Loss: 1.0798, Accuracy: 51.72%
+
+Fold 4, Epoch 10/50, Training Loss: 1.1463
+Fold 4, Epoch 10/50, Validation Loss: 1.0666, Accuracy: 51.72%
+
+Fold 4, Epoch 11/50, Training Loss: 1.1521
+Fold 4, Epoch 11/50, Validation Loss: 1.0460, Accuracy: 55.17%
+
+Fold 4, Epoch 12/50, Training Loss: 1.0928
+Fold 4, Epoch 12/50, Validation Loss: 1.0443, Accuracy: 55.17%
+
+Fold 4, Epoch 13/50, Training Loss: 1.1361
+Fold 4, Epoch 13/50, Validation Loss: 1.0378, Accuracy: 56.32%
+
+Fold 4, Epoch 14/50, Training Loss: 1.1389
+Fold 4, Epoch 14/50, Validation Loss: 1.0328, Accuracy: 56.32%
+
+Fold 4, Epoch 15/50, Training Loss: 1.1458
+Fold 4, Epoch 15/50, Validation Loss: 1.0300, Accuracy: 56.32%
+
+Fold 4, Epoch 16/50, Training Loss: 1.0544
+Fold 4, Epoch 16/50, Validation Loss: 1.0286, Accuracy: 56.32%
+
+Fold 4, Epoch 17/50, Training Loss: 1.1148
+Fold 4, Epoch 17/50, Validation Loss: 1.0201, Accuracy: 55.17%
+
+Fold 4, Epoch 18/50, Training Loss: 1.0870
+Fold 4, Epoch 18/50, Validation Loss: 1.0131, Accuracy: 55.17%
+
+Fold 4, Epoch 19/50, Training Loss: 1.0887
+Fold 4, Epoch 19/50, Validation Loss: 1.0105, Accuracy: 55.17%
+
+Fold 4, Epoch 20/50, Training Loss: 1.0726
+Fold 4, Epoch 20/50, Validation Loss: 1.0063, Accuracy: 56.32%
+
+Fold 4, Epoch 21/50, Training Loss: 1.0786
+Fold 4, Epoch 21/50, Validation Loss: 1.0076, Accuracy: 54.02%
+
+Fold {fold+1}, 검증 손실이 더 이상 감소하지 않아 학습을 중단합니다.
+Training on fold 5
+Fold 5, Epoch 1/50, Training Loss: 1.4710
+Fold 5, Epoch 1/50, Validation Loss: 1.3280, Accuracy: 48.28%
+
+Fold 5, Epoch 2/50, Training Loss: 1.3216
+Fold 5, Epoch 2/50, Validation Loss: 1.3109, Accuracy: 40.23%
+
+Fold 5, Epoch 3/50, Training Loss: 1.2349
+Fold 5, Epoch 3/50, Validation Loss: 1.2737, Accuracy: 40.23%
+
+Fold 5, Epoch 4/50, Training Loss: 1.2643
+Fold 5, Epoch 4/50, Validation Loss: 1.2442, Accuracy: 44.83%
+
+Fold 5, Epoch 5/50, Training Loss: 1.1995
+Fold 5, Epoch 5/50, Validation Loss: 1.2208, Accuracy: 45.98%
+
+Fold 5, Epoch 6/50, Training Loss: 1.2177
+Fold 5, Epoch 6/50, Validation Loss: 1.1998, Accuracy: 48.28%
+
+Fold 5, Epoch 7/50, Training Loss: 1.1601
+Fold 5, Epoch 7/50, Validation Loss: 1.1885, Accuracy: 48.28%
+
+Fold 5, Epoch 8/50, Training Loss: 1.1800
+Fold 5, Epoch 8/50, Validation Loss: 1.1623, Accuracy: 55.17%
+
+Fold 5, Epoch 9/50, Training Loss: 1.1681
+Fold 5, Epoch 9/50, Validation Loss: 1.1588, Accuracy: 57.47%
+
+Fold 5, Epoch 10/50, Training Loss: 1.1253
+Fold 5, Epoch 10/50, Validation Loss: 1.1541, Accuracy: 57.47%
+
+Fold 5, Epoch 11/50, Training Loss: 1.1428
+Fold 5, Epoch 11/50, Validation Loss: 1.1365, Accuracy: 57.47%
+
+Fold 5, Epoch 12/50, Training Loss: 1.1151
+Fold 5, Epoch 12/50, Validation Loss: 1.1342, Accuracy: 57.47%
+
+Fold 5, Epoch 13/50, Training Loss: 1.1026
+Fold 5, Epoch 13/50, Validation Loss: 1.1323, Accuracy: 56.32%
+
+Fold 5, Epoch 14/50, Training Loss: 1.1206
+Fold 5, Epoch 14/50, Validation Loss: 1.1242, Accuracy: 56.32%
+
+Fold 5, Epoch 15/50, Training Loss: 1.1142
+Fold 5, Epoch 15/50, Validation Loss: 1.1191, Accuracy: 54.02%
+
+Fold 5, Epoch 16/50, Training Loss: 1.0650
+Fold 5, Epoch 16/50, Validation Loss: 1.1177, Accuracy: 54.02%
+
+Fold 5, Epoch 17/50, Training Loss: 1.0827
+Fold 5, Epoch 17/50, Validation Loss: 1.1121, Accuracy: 57.47%
+
+Fold 5, Epoch 18/50, Training Loss: 1.0847
+Fold 5, Epoch 18/50, Validation Loss: 1.1081, Accuracy: 54.02%
+
+Fold 5, Epoch 19/50, Training Loss: 1.0812
+Fold 5, Epoch 19/50, Validation Loss: 1.1065, Accuracy: 55.17%
+
+Fold 5, Epoch 20/50, Training Loss: 1.0507
+Fold 5, Epoch 20/50, Validation Loss: 1.0949, Accuracy: 55.17%
+
+Fold 5, Epoch 21/50, Training Loss: 1.0981
+Fold 5, Epoch 21/50, Validation Loss: 1.0884, Accuracy: 57.47%
+
+Fold 5, Epoch 22/50, Training Loss: 1.0832
+Fold 5, Epoch 22/50, Validation Loss: 1.0909, Accuracy: 55.17%
+
+Fold {fold+1}, 검증 손실이 더 이상 감소하지 않아 학습을 중단합니다.
+안녕하세요 사용자 정보를 입력해주세요
+식사 시간을 입력하세요 (예 : 새벽, 아침, 점심, 저녁, 야간...): 아침
+성별을 입력하세요 (1: 남성, 2: 여성): 1
+연령대를 입력하세요 (예: 2, 3, 4...): 2
+결혼 유무를 입력하세요 (0: 미혼, 1: 기혼): 0
+자녀 유무를 입력하세요 (0: 없음, 1: 있음): 0
+거주 유무를 입력하세요 (0: 일치하지 않음, 1: 일치): 1
+사용자가 입력하신 정보 : 식사시간은 아침, 남성, 20대, 미혼, 자녀는 없음, 거주지는 일치함 입니다.
+모델 기반 추천 업종: '한식'
+날씨 기반 추천 업종: '한식'
+두 추천이 일치합니다. 최종 추천 업종: '한식'
+현재 날씨는 기온: 11.75°C, 강수량: 0mm, 적설량: 0mm, 구름량: 0% 입니다.
+따라서 날씨와 입력하신 정보에 맞는 추천 업종은 '한식' 입니다.
