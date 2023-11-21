@@ -10,7 +10,6 @@ uploaded = files.upload()
 # 데이터 로드
 df = pd.read_csv('전북 결제 날씨 통합데이터.csv', encoding='utf-8')
 
-//
 
 import pandas as pd
 import numpy as np
