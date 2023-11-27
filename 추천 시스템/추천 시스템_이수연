@@ -18,7 +18,7 @@ from torch.optim.lr_scheduler import StepLR
 import matplotlib.pyplot as plt
 from matplotlib import font_manager as fm
 
-# Google Colab에서 구글 드라이브를 마운트합니다.
+# Google Colab에서 구글 드라이브를 마운트합니다.0
 from google.colab import drive
 drive.mount('/content/drive')
 
@@ -71,9 +71,6 @@ for category in unique_categories:
     # 필터링된 데이터를 결과 DataFrame에 추가합니다.
     filtered_df = pd.concat([filtered_df, filtered_category_data], axis=0)
 
-from google.colab import drive
-drive.mount('/content/drive')
-
 # name 변수 설정
 name = '전라북도'  # 예시, 실제 사용하는 이름으로 대체
 
@@ -84,7 +81,7 @@ save_path = '/content/drive/My Drive/Colab Notebooks/'  # 이 경로는 적절�
 filtered_df.to_csv(f"{save_path}{name}_filtered.csv", index=False)
 
 # 이상치처리된 파일읽기
-data = pd.read_csv(f"{save_path}{name}_filtered.csv", encoding = 'UTF-8')
+df = pd.read_csv(f"{save_path}{name}_filtered.csv", encoding = 'UTF-8')
 
 # 정규화
 
@@ -107,7 +104,7 @@ num_features = df.select_dtypes(include=['int64', 'float64']).columns
 df[num_features] = scaler.fit_transform(df[num_features])
 
 # 스케일링된 데이터를 새 CSV 파일로 저장합니다.
-data.to_csv(f"{name}_scaled_data.csv", index=False)
+df.to_csv(f"{name}_scaled_data.csv", index=False)
 
 # CSV 파일을 읽어서 데이터프레임으로 저장합니다.
 df = pd.read_csv(f'{name}_scaled_data.csv')
@@ -228,7 +225,7 @@ best_val_loss = float('inf')
 patience = 15
 wait = 0
 
-num_epochs = 100 
+num_epochs = 100
 loss_threshold = 0.01  # 손실 임계값
 
 # calculate_validation_loss 함수 정의
@@ -237,13 +234,13 @@ def calculate_validation_loss(model, val_loader, criterion):
     total_loss = 0.0
     total_count = 0
 
-    with torch.no_grad(): 
+    with torch.no_grad():
         for inputs, targets in val_loader:
             outputs = model(inputs)
             loss = criterion(outputs, targets)
             total_loss += loss.item() * inputs.size(0)
             total_count += inputs.size(0)
-    
+
     model.train()  # 모델을 다시 훈련 모드로 설정
     return total_loss / total_count
 
@@ -258,7 +255,7 @@ for epoch in range(num_epochs):
         loss.backward()
         optimizer.step()
         total_loss += loss.item()
-    
+
     scheduler.step()
 
     if epoch % 10 == 0:
@@ -361,6 +358,6 @@ for bar, prob in zip(bars, recommended_probabilities_sorted):
     plt.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 1, f'{prob:.2f}%', ha='center', color='black', fontsize=10, fontweight='bold')
 
 # 그래프 표시
-plt.xticks(rotation=45, ha='right') 
+plt.xticks(rotation=45, ha='right')
 plt.tight_layout()
 plt.show()
