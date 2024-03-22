@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>오늘 밥은 무엇? - 오밥무</title>
+    <link rel="stylesheet" href="css/menu_page.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+<div class="background-image">
+
+    <img class="zindex" id="star2" src="../img/img4.png">
+    <img class="zindex" id="star3" src="../img/img3.png">
+    <img class="zindex" id="star4" src="../img/img3.png">
+    <img class="zindex" id="star5" src="../img/img5.png">
+
+    <img class="zindex" id="star7" src="../img/img2.png">
+    <img class="zindex" id="star8" src="../img/img1.png">
+    <img id="star9" src="../img/img5.png">
+
+
+    <img class="zindex" id="weather_img" src="../img/weather.png">
+    <img class="zindex" id="recommend_img" src="../img/recommend.png">
+    <img class="zindex" id="graph_img" src="../img/graph.png">
+    <ul id="appbar">
+        <a href="#">
+            <div id="appbar_title">Weather Seller</div>
+        </a>
+        <div id="appbar_right">
+            <a href="#about-section">
+                <li>About</li>
+            </a>
+            <a href="#service-section">
+                <li>Service</li>
+            </a>
+            <a href="../../templates/login.html">
+                <li>MyPage</li>
+            </a>
+            <a href="menu_page.html">
+                <li>Menu</li>
+            </a>
+        </div>
+    </ul>
+
+
+    <div class="background-image">
+        <div id="slogan">
+            <span id="slogan_dot">●</span>
+            <p class="font"><span class="orange-text" th:text="${name}">김제현</span> 님을 위한 <span
+                    class="orange-text">맛집</span> 추천</p>
+            <div class="sub_slogan">
+                <p th:text="${name}+'님의 정보를 기반으로 맞춤형 식당을 제공해드립니다.'"></p>
+            </div>
+        </div>
+
+
+        <div class="bottom-sections">
+            <div id="weather">
+                <div id="weather-title">
+                </div>
+                <div id="weather-info">
+                </div>
+                <div id="weather-icon">
+                </div>
+                <div id="weather-temperature">
+                </div>
+            </div>
+
+            <!-- 추천 순위 동적 생성 시작 -->
+            <div id="medals">
+                <h1>💯 추천 순위</h1>
+                <div th:each="entry, iterStat : ${recommendations}">
+                    <p id="capability">
+                        <a th:href="${'#' + entry.key}">
+                            <i th:id="${'medal' + (iterStat.index + 1)}" class="fa-solid fa-medal"></i>
+                            <span th:text="${entry.key}"></span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <!-- 추천 순위 동적 생성 끝 -->
+            <div id="graph">
+                <canvas id="myChart" width="320" height="380"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu">
+        <div class="value-menu" id="한식">
+            <h5>🍚 한식</h5>
+        </div>
+        <div class="menu_display">
+            <div>
+                <div class="value">
+                    <div class="restaurant-intro">
+                        <h2 class="restaurant-name"></h2>
+                        <p class="restaurant-location"></p>
+                        <p class="restaurant-description"></p>
+                    </div>
+                </div>
+                <div class="value">
+                    <div class="restaurant-intro">
+                        <h4 class="restaurant-name"></h4>
+                        <p class="restaurant-location"></p>
+                        <p class="restaurant-description"></p>
+                    </div>
+                </div>
+                <div class="value">
+                    <div class="restaurant-intro">
+                        <h4 class="restaurant-name"></h4>
+                        <p class="restaurant-location"></p>
+                        <p class="restaurant-description"></p>
+                    </div>
+                </div>
+                <div class="value">
+                    <div class="restaurant-intro">
+                        <h4 class="restaurant-name"></h4>
+                        <p class="restaurant-location"></p>
+                        <p class="restaurant-description"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="menu">
+        <div class="value-menu" id="양식">
+            <h5>🍝 양식</h5>
+        </div>
+        <div class="menu_display">
+            <div>
+                <div class="value">
+                    <div class="restaurant-intro2">
+                        <h4 class="restaurant-name2"></h4>
+                        <p class="restaurant-location2"></p>
+                        <p class="restaurant-description2"></p>
+                    </div>
+                </div>
+                <div class="value">
+                    <div class="restaurant-intro2">
+                        <h4 class="restaurant-name2"></h4>
+                        <p class="restaurant-location2"></p>
+                        <p class="restaurant-description2"></p>
+                    </div>
+                </div>
+                <div class="value">
+                    <div class="restaurant-intro2">
+                        <h4 class="restaurant-name2"></h4>
+                        <p class="restaurant-location2"></p>
+                        <p class="restaurant-description2"></p>
+                    </div>
+                </div>
+                <div class="value">
+                    <div class="restaurant-intro2">
+                        <h4 class="restaurant-name2"></h4>
+                        <p class="restaurant-location2"></p>
+                        <p class="restaurant-description2"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="menu">
+        <div class="value-menu" id="일식">
+            <h5>🍣 일식</h5>
+        </div>
+        <div class="menu_display">
+            <div>
+                <div class="value">
+                    <div class="restaurant-intro3">
+                        <h4 class="restaurant-name3"></h4>
+                        <p class="restaurant-location3"></p>
+                        <p class="restaurant-description3"></p>
+                    </div>
+                </div>
+                <div class="value">
+                    <div class="restaurant-intro3">
+                        <h4 class="restaurant-name3"></h4>
+                        <p class="restaurant-location3"></p>
+                        <p class="restaurant-description3"></p>
+                    </div>
+                </div>
+                <div class="value">
+                    <div class="restaurant-intro3">
+                        <h4 class="restaurant-name3"></h4>
+                        <p class="restaurant-location3"></p>
+                        <p class="restaurant-description3"></p>
+                    </div>
+                </div>
+                <div class="value">
+                    <div class="restaurant-intro3">
+                        <h4 class="restaurant-name3"></h4>
+                        <p class="restaurant-location3"></p>
+                        <p class="restaurant-description3"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="menu">
+        <div class="value-menu" id="중식">
+            <h5>🍜 중식</h5>
+        </div>
+        <div class="menu_display">
+            <div>
+                <div class="value">
+                    <div class="restaurant-intro4">
+                        <h4 class="restaurant-name4"></h4>
+                        <p class="restaurant-location4"></p>
+                        <p class="restaurant-description4"></p>
+                    </div>
+                </div>
+                <div class="value">
+                    <div class="restaurant-intro4">
+                        <h4 class="restaurant-name4"></h4>
+                        <p class="restaurant-location4"></p>
+                        <p class="restaurant-description4"></p>
+                    </div>
+                </div>
+                <div class="value">
+                    <div class="restaurant-intro4">
+                        <h4 class="restaurant-name4"></h4>
+                        <p class="restaurant-location4"></p>
+                        <p class="restaurant-description4"></p>
+                    </div>
+                </div>
+                <div class="value">
+                    <div class="restaurant-intro4">
+                        <h4 class="restaurant-name4"></h4>
+                        <p class="restaurant-location4"></p>
+                        <p class="restaurant-description4"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <div>Weather Seller</div>
+        <div>
+            Addr. 전북 전주시 덕진구 백제대로 567 (전북대학교 전주캠퍼스 공과대학 2호관 116호) .<br>
+            010 - 1234 -5678 <br>
+            copyright &copy 전북대학교 Weather Seller
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/7e9d496250.js" crossorigin="anonymous"></script>
+    <script src="../js/weather.js"></script>
+    <script src="../js/restaurant.js"></script>
+
+
+    <!-- JavaScript 차트 생성 코드 -->
+    <script th:inline="javascript">
+        // 서버에서 받은 데이터를 차트 데이터로 변환
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chartData = {
+            labels: [[${recommendations.keySet()}]],
+            datasets: [{
+                label: '의 현재 선호도',
+                data: [[${recommendations.values()}]],
+                backgroundColor: [
+                    'rgb(175,65,65)',
+                    'rgb(31,70,197)',
+                    'rgb(231,194,98)',
+                    'rgb(82,148,59)'
+                ],
+                borderColor: [
+                    'rgb(255,255,255)',
+                    'rgb(255,255,255)',
+                    'rgb(255,255,255)',
+                    'rgb(255,255,255)'
+                ],
+                borderWidth: 2
+            }]
+        };
+        // 차트 생성
+        var myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: chartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    display: true,
+                    labels: {
+                        fontColor: 'black', // 글씨 색상
+                        fontFamily: 'sans-serif', // 글씨체
+                        fontSize: 14, // 글씨 크기
+                        fontStyle: 'bold' // 글씨 스타일 (normal, bold, italic)
+                    }
+                },
+            }
+        });
+    </script>
+</body>
+</html>

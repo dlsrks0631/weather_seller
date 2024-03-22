@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+    <link rel="stylesheet" href="/css/signup_page.css">
+
+</head>
+<body>
+<ul id="appbar">
+    <a href="home.html"><div id="appbar_title">Weather Seller</div></a>
+    <div id="appbar_right">
+        <li>Team</li>
+        <li>Services</li>
+        <a href="login.html"><li>Login</li></a>
+        <a href="signup.html"><li>Sign up</li></a>
+    </div>
+</ul>
+<form id="signup" action="/signup" method="post">
+    <header class="welcome-header">
+        <h1 class="welcome-header__title">Sign up</h1>
+    </header>
+    <div class="select">
+        <select name="gender" class="select">
+            <option value="male">남</option>
+            <option value="female">여</option>
+        </select>
+    </div>
+
+    <div class="select">
+        <select name="age" class="select">
+            <option value="10s">10대</option>
+            <option value="20s">20대</option>
+            <option value="30s">30대</option>
+            <option value="40s">40대</option>
+            <option value="50s">50대</option>
+            <option value="60s">60대 이상</option>
+        </select>
+    </div>
+    <input type="text" name="name" placeholder="이름"/>
+    <input type="text" name="address" placeholder="주소"/>
+    <input type="text" name="username" placeholder="아이디"/>
+    <input type="password" name="password" placeholder="비밀번호" />
+    <input class="signup__submit" type="submit" value="Sign up" />
+</form>
+</body>
+</html>
+<script src="https://kit.fontawesome.com/7e9d496250.js" crossorigin="anonymous"></script>
+<script>
+</script>

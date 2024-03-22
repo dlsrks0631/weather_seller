@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/login_page.css">
+</head>
+<body>
+<ul id="appbar">
+    <a href="home.html"><div id="appbar_title">Weather Seller</div></a>
+    <div id="appbar_right">
+        <li>Team</li>
+        <li>Services</li>
+        <li>Login</li>
+        <a href="signup.html"><li>Sign up</li></a>
+    </div>
+</ul>
+<form id="login" action="/login" method="post">
+    <header class="welcome-header">
+        <h1 class="welcome-header__title">Login</h1>
+    </header>
+    <input id="id1" name="username" type="text" placeholder="아이디,이메일,전화번호"/>
+    <input name="password" type="password" placeholder="비밀번호" />
+    <button type="submit" class="login__submit">Login</button>
+    <div class="or">
+        <div class="or__div"></div>
+        <span>또는</span>
+        <div class="or__div"></div>
+    </div>
+    <div class="find__password">
+        <div class="find__password__div">
+            <a href="#">아이디 찾기</a>
+            <a href="#">비밀번호 찾기</a>
+        </div>
+    </div>
+</form>
+</body>
+</html>
+<script src="https://kit.fontawesome.com/7e9d496250.js" crossorigin="anonymous"></script>

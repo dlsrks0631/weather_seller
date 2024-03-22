@@ -1,0 +1,28 @@
+/* main_text1*/
+
+.main_text1{
+    width: 100%;
+    height:659px;
+    /* margin-top:-132px; */
+    /* background: #2F7AF4 */
+  }
+  .main_text1 > h1{
+    padding-top:50px;
+    text-align: center;
+  }
+  .main_text1 > .contents1 {
+    text-align: center;
+  }
+  .service {
+    width:1280px;
+    display: flex;
+    margin: 49px auto;
+    height:427px;
+  }
+  
+  .service > .contents2 {
+    padding: 20px;
+  }
+  .service > .contents2 > h2{
+    margin-bottom: 27px;
+  }

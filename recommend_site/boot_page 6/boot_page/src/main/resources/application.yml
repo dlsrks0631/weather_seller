@@ -1,0 +1,30 @@
+--- # Start
+
+--- # change port
+server:
+  port: 8081
+
+--- # Thymeleaf
+spring:
+  thymeleaf:
+    cache: false # ?? ?? reload
+    prefix: classpath:/templates/ # file:src/main/resources/templates # classpath:/templates
+    suffix: .html
+
+--- # mysql
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bootstudy
+    username: boot
+    password: 1234
+
+--- #
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql : true
+        format_sql: true

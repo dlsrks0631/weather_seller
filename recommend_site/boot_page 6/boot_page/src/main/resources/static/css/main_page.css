@@ -1,0 +1,356 @@
+* {
+    box-sizing: border-box; 
+    border-collapse: collapse;
+    list-style: none;
+
+}
+@font-face {
+    font-family: 'BookkMyungjo-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'EASTARJET-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/EASTARJET-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+.font{
+    font-family: 'BookkMyungjo-Bd',sans-serif;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+  max-width: 100vw; /* 화면 너비를 초과하지 않도록 제한 */
+}
+
+/* Appbar CSS */
+#appbar {
+    font-family: 'verdana', fantasy;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 95vw;
+    z-index: 1000;
+    font-size: 20px;
+    font-weight: bold;
+    list-style: none;
+}
+
+#appbar_title {
+    font-size: 32px;
+    color: #f43a01;
+}
+
+#appbar_right {
+    font-family: 'verdana', fantasy;
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    font-size: 18px;
+}
+
+#appbar a {
+  text-decoration: none;
+  color: black;
+}
+
+/* Slogan CSS */
+#slogan {
+    position: absolute;
+    font-size: 60px;
+    top: 12%;
+    left: 7%;
+    font-weight:1000;
+}
+
+#slogan > span {
+    color: #f43a01;
+    font-size: 30px;
+    position: relative;
+    left: 15px;
+    top: 68px;
+}
+
+.sub_slogan {
+    font-size: 25px;
+    position: relative;
+    left: 5px;
+    bottom: 23px;
+}
+
+.orange-text {
+    color: #f43a01;
+    font-weight: bold;
+}
+
+/* background */
+.background-image {
+  background-color: #fffaeb;
+  background-size: contain;
+  height: 100%;
+  width: 100%;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+#background-right {
+    position: absolute; /* 위치를 절대값으로 설정합니다 */
+    right: 0; /* 오른쪽에 위치하도록 설정합니다 */
+    width: 50%; /* div의 너비를 설정합니다 */
+    height: 100%; /* div의 높이를 설정합니다 */
+    background-size: cover;
+    background-image: url("../img/pizza.jpeg");
+    height: 100%;
+    background-position: center; /* 배경 이미지가 중앙에 위치하도록 합니다 */
+}
+
+.location form {
+    display: flex;
+    justify-content: center;
+}
+
+#search {
+    margin-left: 15px;
+    color: white;
+    background: none;
+    border-style: none;
+    font-size: 25px;
+}
+
+.location input {
+    width: 30%;
+    height: 30px;
+}
+
+.content {
+  text-align: center;
+  padding: 60px 0; /* Add padding to align content properly */
+}
+
+.header {
+  font-size: 24px;
+  margin-bottom: 40px;
+}
+
+.subheader {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+.button {
+  background-color: #ffffff;
+  color: black;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+}
+
+.button:hover {
+  background-color: #f5f5f5;
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-in-out forwards;
+}
+
+.logo {
+  width: 30px;
+  height: 30px;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+
+.weather {
+    position: absolute;
+    top: 40%;
+}
+
+/* main_text0 */
+
+.main_text0{
+  width: 100%;
+  height:571px;
+  background: #f1f2f3;
+  padding-top: 30px;
+}
+.main_text0 > h1{
+  text-align: center;
+}
+.main_text0 > .contents1 {
+  text-align: center;
+
+}
+
+.contents1 {
+  font-size: 20px;
+  font-weight: 500;
+  font-family: 'EASTARJET-Medium',sans-serif;
+}
+
+
+.contents1_bold {
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.icons{
+  display: flex;
+  width:1280px;
+  height: 400px;
+  /* background: orange; */
+  margin: auto;
+}
+.icons > li {
+  flex: 1;
+  background: white;
+  margin-top:49px;
+  height:302px;
+  text-align: center;
+}
+
+.icons > li > .icon_img{
+  margin-top:18px;
+}
+
+.icons > li:not(:last-child){
+  margin-right: 20px;
+}
+
+.icons .contents2 {
+  width:280px;
+  margin:auto;
+  letter-spacing: -1px;
+  font-family: 'EASTARJET-Medium',sans-serif;
+  font-size: 110%;
+}
+.more{
+  width:100px;
+  height: 30px;
+  background: #2F7AF4;
+  color: #fff;
+  font-size: 12px;
+  line-height: 30px;
+  margin:16.2px auto;
+}
+
+/* main_text1*/
+
+.main_text1{
+  width: 100%;
+  height:659px;
+  /* margin-top:-132px; */
+  /* background: #2F7AF4 */
+}
+.main_text1 > h1{
+  padding-top:50px;
+  text-align: center;
+}
+.main_text1 > .contents1 {
+  text-align: center;
+}
+.service {
+  width:100vw;
+  display: flex;
+  margin: 49px auto;
+  height: 600px;
+}
+
+#food_photo {
+    width: 40vw;
+    height: 450px;
+}
+
+.service {
+    display: flex;
+    justify-content: space-around;
+    align-items: start;
+}
+
+.service > .contents2 {
+}
+.service > .contents2 > h2{
+  margin-bottom: 27px;
+}
+
+#first-content {
+    margin-bottom: 40px;
+}
+
+.icon_img2 {
+    padding-top: 7px;
+}
+
+
+.icon_img2 img{
+      margin-top:18px;
+    width: 120px;
+    height: 120px;
+    margin-bottom:10px;
+}
+.contents2 div {
+    line-height: 2.7;
+}
+
+
+/* main_text2 */
+.main_text2 {
+  width:100%;
+  height:300px;
+  background-image: url("../img/contact_img.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+
+.main_text2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top:70px;
+  flex-direction: column;
+  color: black;
+  margin-top: 43px
+}
+
+.main_text2 > div{
+  flex: 1;
+  text-align: center;
+}
+
+.footer{
+  display: flex;
+  background: #1f1f1f;
+  padding:60px;
+}
+.footer > div:first-child {
+  flex:3;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 25px;
+}
+.footer > div:last-child {
+  flex:9;
+  color: #fff;
+  line-height: 30px;
+}

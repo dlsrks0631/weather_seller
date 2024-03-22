@@ -1,0 +1,755 @@
+* {
+    box-sizing: border-box;
+    border-collapse: collapse;
+    list-style: none;
+
+}
+
+.zindex {
+    z-index: 1000;
+}
+#star1 {
+    position: absolute;
+    width: 200px;
+    top: 200px;
+    right: 200px;
+}
+
+#star2 {
+    position: absolute;
+    width: 200px;
+    top: 130px;
+    left: 55px;
+}
+
+#star3 {
+    position: absolute;
+    width: 150px;
+    right: 0px;
+    top: 150px;
+}
+
+#star4 {
+    position: absolute;
+    width: 120px;
+    bottom: 100px;
+}
+
+#star5 {
+    position: absolute;
+    width: 200px;
+    top: 500px;
+    right: 0px;
+}
+
+#star6 {
+    position: absolute;
+    width: 200px;
+    bottom: 30px;
+    right: 980px;
+}
+
+#star7 {
+    position: absolute;
+    width: 200px;
+    bottom: 3px;
+    right: 420px;
+}
+
+#star8 {
+    position: absolute;
+    width: 300px;
+    top: 200px;
+    left: 390px;
+}
+
+#star9 {
+    position: absolute;
+    width: 150px;
+    top: 400px;
+    left: 30px;
+}
+
+#graph_img {
+    position: absolute;
+    width: 250px;
+    bottom: 22.8px;
+    right: 40px;
+    z-index: 100;
+}
+
+
+
+#recommend_img {
+    position: absolute;
+    width: 250px;
+    bottom: 23px;
+    left: 500px;
+    z-index: 100;
+}
+
+#weather_img {
+    position: absolute;
+    width: 270px;
+    bottom: 15px;
+    left: 50px;
+    z-index: 100;
+}
+
+#star5 {
+    position: absolute;
+    width: 200px;
+    top: 500px;
+}
+@font-face {
+    font-family: 'NPSfontBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face{
+    font-family:'DNFForgedBlade';font-style:normal;font-weight:500;
+    src:url('//cdn.df.nexon.com/img/common/font/DNFForgedBlade-Medium.otf')format('opentype')}
+
+@font-face {
+    font-family: 'TTTtangsbudaejjigaeB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/TTTtangsbudaejjigaeB.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    max-width: 100vw; /* 화면 너비를 초과하지 않도록 제한 */
+}
+
+/* Appbar CSS */
+#appbar {
+    font-family: 'verdana', fantasy;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 95vw;
+    z-index: 1000;
+    font-size: 20px;
+    font-weight: bold;
+    list-style: none;
+}
+
+#appbar_title {
+    font-size: 32px;
+    color: #f43a01;
+}
+
+#appbar_right {
+    font-family: 'verdana', fantasy;
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    font-size: 18px;
+}
+
+#appbar a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Slogan CSS */
+#slogan {
+    text-align : center;
+    font-size: 60px;
+    font-weight:1000;
+    position: relative;
+    bottom: 33px;
+}
+
+#slogan_dot {
+    text-align : center;
+    color: #f43a01;
+    font-size: 30px;
+    position: relative;
+    right: 328px;
+    top: 65px;
+}
+
+.sub_slogan {
+    text-align : center;
+    font-size: 25px;
+    position: relative;
+    left: 5px;
+    bottom: 48px;
+    font-family: 'TTTtangsbudaejjigaeB', sans-serif;
+}
+
+.orange-text {
+    color: #f43a01;
+    font-weight: bold;
+}
+
+.font {
+    font-family: 'TTTtangsbudaejjigaeB', sans-serif;
+
+}
+
+.bottom-sections{
+    display: flex;
+    justify-content: space-around; /* 각 섹션을 균등하게 배치 */
+    align-items: start; /* 섹션을 상단에 정렬 */
+    margin-top: 20px; /* 상단 여백 추가 */
+}
+/* background */
+.background-image {
+    background-color: #fffaeb;
+    background-size: cover;
+    height: 100%;
+}
+
+#background-right {
+    position: absolute; /* 위치를 절대값으로 설정합니다 */
+    right: 0; /* 오른쪽에 위치하도록 설정합니다 */
+    width: 50%; /* div의 너비를 설정합니다 */
+    height: 100%; /* div의 높이를 설정합니다 */
+    background-size: cover;
+    height: 100%;
+    background-position: center; /* 배경 이미지가 중앙에 위치하도록 합니다 */
+}
+
+#background-right img {
+    height: 100vh;
+}
+
+.location form {
+    display: flex;
+    justify-content: center;
+}
+
+#search {
+    margin-left: 15px;
+    color: white;
+    background: none;
+    border-style: none;
+    font-size: 25px;
+}
+
+.location input {
+    width: 30%;
+    height: 30px;
+}
+
+.content {
+    text-align: center;
+    padding: 60px 0; /* Add padding to align content properly */
+}
+
+.header {
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+.subheader {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.button {
+    background-color: #ffffff;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background-color: #f5f5f5;
+}
+
+.slide-up {
+    animation: slideUp 0.5s ease-in-out forwards;
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-100%);
+    }
+}
+
+
+.weather {
+    position: absolute;
+    top: 40%;
+    left: 7%;
+
+}
+
+/* main_text0 */
+
+.main_text0{
+    width: 100%;
+    height:571px;
+    background: #f1f2f3;
+    padding-top: 30px;
+}
+.main_text0 > h1{
+    text-align: center;
+}
+.main_text0 > .contents1 {
+    text-align: center;
+}
+
+.contents1_bold {
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.icons{
+    display: flex;
+    width:1280px;
+    height: 400px;
+    /* background: orange; */
+    margin: auto;
+}
+.icons > li {
+    flex: 1;
+    background: white;
+    margin-top:49px;
+    height:302px;
+    text-align: center;
+}
+.icons > li > .icon_img{
+    margin-top:18px;
+}
+
+.icons > li:not(:last-child){
+    margin-right: 20px;
+}
+
+.icons .contents2 {
+    width:280px;
+    margin:auto;
+    letter-spacing: -1px;
+}
+.more{
+    width:100px;
+    height: 30px;
+    background: #2F7AF4;
+    color: #fff;
+    font-size: 12px;
+    line-height: 30px;
+    margin:25px auto;
+}
+
+/* main_text1*/
+
+.main_text1{
+    width: 100%;
+    height:659px;
+    /* margin-top:-132px; */
+    /* background: #2F7AF4 */
+}
+.main_text1 > h1{
+    padding-top:50px;
+    text-align: center;
+}
+.main_text1 > .contents1 {
+    text-align: center;
+}
+.service {
+    width:1280px;
+    display: flex;
+    margin: 49px auto;
+    height:427px;
+}
+
+.service > .contents2 {
+    padding: 20px;
+    margin-left: 30px;
+}
+.service > .contents2 > h2{
+    margin-bottom: 27px;
+}
+
+/* main_text2 */
+.main_text2 {
+    width:100%;
+    height:400px;
+    background-image: url("../img/contact.png");
+    background-size: cover;
+}
+
+.main_text2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top:138px;
+    flex-direction: column;
+    color: white;
+}
+
+.main_text2 > div{
+    flex: 1;
+    text-align: center;
+}
+
+.footer{
+    display: flex;
+    background: #1f1f1f;
+    padding:60px;
+    width: 100vw;
+}
+.footer > div:first-child {
+    flex:3;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 25px;
+}
+.footer > div:last-child {
+    flex:9;
+    color: #fff;
+    line-height: 30px;
+}
+
+#recommend-section {
+    display: flex;
+    width: 100%;
+    height: auto; /* 높이를 auto로 설정하여 내용에 따라 조절되도록 함 */
+    position: relative; /* 필요에 따라 position을 relative로 조정 */
+    left: 40px;
+    background-color: white;
+}
+
+
+/*profile-section*/
+
+.profile-section{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 100px 100px;
+    align-items: center;
+}
+
+
+#profile-picture{
+    width: 400px;
+    margin-right: 60px;
+}
+
+.introduction>h2{
+    margin: 0px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 35px;
+}
+
+.introduction>p{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+
+    margin-bottom: 40px;
+}
+
+#capability{
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 15px;
+}
+
+#capability a {
+    text-decoration: none;
+    color: black;
+}
+
+/*value section*/
+
+.value-menu{
+    /* font-family: 'Montserrat', sans-serif; */
+    font-size: 40px;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 130px;
+    align-items: center;
+    font-family: 'Gaegu', sans-serif;
+}
+
+
+.value-menu{
+    font-family: 'Katuri', sans-serif;
+    font-size: 40px;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 130px;
+    align-items: center;
+}
+
+.menu {
+    background-color:  #fffaeb;
+}
+
+.value-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+    margin: 100px 150px;
+    margin-top: 680px;
+}
+
+.value{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 40px;
+    align-items: center;
+
+}
+
+
+.restaurant-img{
+    width: 100px;
+    height: 100px;
+
+    border: 2px solid #C2B4AB;
+    border-radius: 100px;
+    padding: 15px;
+}
+
+.restaurant-intro2{
+    margin-left: 30px;
+}
+
+
+.restaurant-name2{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.restaurant-location2{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+
+    margin: 0px;
+}
+.restaurant-description2{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+
+    margin: 0px;
+}
+
+
+.restaurant-intro{
+    margin-left: 30px;
+}
+
+
+.restaurant-name{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.restaurant-location{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+
+    margin: 0px;
+}
+.restaurant-description{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+
+    margin: 0px;
+}
+
+#restaurant_list {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.menu_display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    position:relative;
+    left: 100px;
+}
+
+#medal1 {
+    color: gold;
+}
+
+#medal2 {
+    color: silver;
+}
+
+#medal3 {
+    color: #CD7F32; /* Bronze color */
+}
+
+#medal4 {
+    color: black;
+}
+
+#medals {
+    border-radius: 100px;
+    height: 445px;
+    width: 350px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    font-family: 'TTTtangsbudaejjigaeB',sans-serif;;
+    position: absolute;
+    right: 38.2%;
+    top: 33%;
+    border: 10px solid  #077d4c;
+}
+
+#medals h1 {
+    font-size: 35px;
+}
+
+
+.menu {
+    height: 80%;
+}
+
+#graph {
+    padding: 30px;
+    border-radius: 100px;
+    position: absolute;
+    background-color: white;
+    height: 445px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'NPSfontBold';
+    right: 13%;
+    bottom: 13%;
+    position: absolute;
+    right: 10%;
+    top: 33%;
+    border: 10px solid #d14937;
+}
+#weather {
+    font-family: 'NPSfontBold';
+    background-color: white;
+    height: 445px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color:  #004ead;
+    padding: 30px;
+    border-radius: 100px;
+    border: 10px solid  #004ead;
+
+    position: absolute;
+    left: 10%;
+    top: 33%;
+}
+
+#weather-title {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+#weather-info {
+    font-size: 25px;
+    font-weight: 1000;
+}
+
+#weather-icon {
+    font-size: 90px;
+}
+#weather-temperature {
+    font-size: 35px;
+}
+
+.restaurant-intro3{
+    margin-left: 30px;
+}
+
+
+.restaurant-name3{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.restaurant-location3{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+
+    margin: 0px;
+}
+.restaurant-description3{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+
+    margin: 0px;
+}
+
+.restaurant-intro4{
+    margin-left: 30px;
+}
+
+
+.restaurant-name4{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.restaurant-location4{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+
+    margin: 0px;
+}
+.restaurant-description4{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+
+    margin: 0px;
+}
